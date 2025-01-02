@@ -1,0 +1,39 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      // Allows all users to access a user profile 
+      allow read: if true;
+      allow write: if request.auth.uid == userId;
+
+      match /incidents/draft/post/{postId} {
+        allow read: if request.auth.uid == userId;
+      }
+
+       match /incidents/published/post/{postId} {
+        allow read: if true;
+      }
+
+      match /incidents/draft/post/{postId} {
+        allow write: if request.auth.uid == userId;
+      }
+
+      match /incidents/published/post/{postId} {
+        allow create: if request.auth.uid == userId;
+        allow delete: if request.auth.uid == userId;
+        allow update: if false;
+      }
+
+      match /sos/{postId} {
+        allow read, write: if request.auth.uid == userId;
+      }
+    }
+
+
+    match /{document=**}/post/{postId} {
+       allow read: if resource.data.draft == false;
+    }    
+  }
+}

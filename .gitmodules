@@ -1,0 +1,3 @@
+[submodule "campus"]
+	path = campus
+	url = https://github.com/Pearl-Pko/campus-security.git

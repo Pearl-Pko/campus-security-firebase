@@ -1,23 +1,40 @@
 {
-  "indexes": [
-    {
-      "collectionGroup": "post",
-      "queryScope": "COLLECTION_GROUP",
-      "fields": [
+    "indexes": [
         {
-          "fieldPath": "id",
-          "order": "ASCENDING"
-        }, 
+            "collectionGroup": "post",
+            "queryScope": "COLLECTION_GROUP",
+            "fields": [
+                {
+                    "fieldPath": "id",
+                    "order": "ASCENDING"
+                },
+                {
+                    "fieldPath": "draft",
+                    "order": "ASCENDING"
+                },
+                {
+                    "fieldPath": "createdAt",
+                    "order": "ASCENDING"
+                }
+            ]
+        },
         {
-          "fieldPath": "draft",
-          "order": "ASCENDING"
-        }, 
+            "collectionGroup": "post",
+            "queryScope": "COLLECTION_GROUP",
+            "fields": [
+                {"fieldPath": "draft", "order": "ASCENDING"},
+                {"fieldPath": "createdAt", "order": "DESCENDING"}
+            ]
+        },
         {
-          "fieldPath": "createdAt",
-          "order": "ASCENDING"
+            "collectionGroup": "post",
+            "queryScope": "COLLECTION_GROUP",
+            "fields": [
+                {"fieldPath": "draft", "order": "ASCENDING"},
+                {"fieldPath": "id", "order": "ASCENDING"},
+                {"fieldPath": "createdAt", "order": "DESCENDING"}
+            ]
         }
-      ]
-    }
-  ],
-  "fieldOverrides": []
+    ],
+    "fieldOverrides": []
 }
